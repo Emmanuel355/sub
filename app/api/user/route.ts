@@ -36,6 +36,7 @@ export async function POST(req: NextRequest) {
         return NextResponse.json({status: 'success', data: user})
 
     } catch (error: any) {
+        //return Email error response if email already exists
         if (error.code === 'P2002' && error.meta?.target?.includes('email')) {
 
             return NextResponse.json({status: 'error', data: 'Email already in use'})
